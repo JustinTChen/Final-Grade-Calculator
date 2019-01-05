@@ -3,12 +3,6 @@ import tkinter
 import numpy as np
 from datascience import *
 
-def test(event):
-    print('done')
-
-def nig(event):
-    print('hehe xd')
-
 def hehe():
     print("hehe xd")
 
