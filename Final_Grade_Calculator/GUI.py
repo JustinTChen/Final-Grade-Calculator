@@ -1,6 +1,5 @@
 from tkinter import *
 import tkinter.messagebox
-from helpers import *
 
 #CREATES WINDOW
 root = Tk()
@@ -117,41 +116,27 @@ grade3 = Grade(3)
 grade4 = Grade(4)
 grade5 = Grade(5)
 
-##############################################################################
-"*** MENUS ***"
-##############################################################################
-menu = Menu(root)
-root.config(menu=menu)
-
-subMenu = Menu(menu)
-menu.add_cascade(label="File", menu=subMenu)
-subMenu.add_command(label="New Calculation", command=hehe)
-subMenu.add_separator()
-subMenu.add_command(label="Exit", command=exit)
-subMenu.add_separator()
-subMenu.add_command(label="Daddy Denero", command=denero)
-
-editMenu = Menu(menu)
-menu.add_cascade(label="Edit", menu=editMenu)
-editMenu.add_command(label="Undo", command=hehe)
-editMenu.add_command(label="Redo", command=hehe)
-
 #CHECKBOX
 c = Checkbutton(mainFrame, text="I do not have a 4.0", bg="light blue")
 c.grid(columnspan=2)
 
-#STATUS BAR
-status = Label(bottomFrame, text="hehexd", bd=1, relief=SUNKEN, anchor=W)
-status.pack(side=BOTTOM, fill=X)
+##############################################################################
+"*** Status Bar ***"
+##############################################################################
+class StatusBar(Frame):
+    def __init__(self, master):
+        self.string = StringVar()
+        self.label = Label(bottomFrame, bd=1, relief=SUNKEN, anchor=W, textvariable=self.string)
+        self.string.set("Calculating...")
+        self.label.pack(side=BOTTOM, fill=X)
+
+status = StatusBar(root)
 
 #CALCULATE BUTTON
 from Calculator import *
 calculate = Button(mainFrame, text="Calculate", bg="light blue", fg="purple")
 calculate.bind("<Button-1>", click)
 calculate.grid(row=7, columnspan=6)
-
-#POPUP
-#tkinter.messagebox.showinfo("Results",)
 
 #Keeps command line running until user closes (essentially an infinite loop)
 root.mainloop()
