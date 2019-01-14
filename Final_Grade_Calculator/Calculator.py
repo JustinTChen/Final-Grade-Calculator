@@ -1,4 +1,6 @@
 from GUI import *
+from datascience import *
+import numpy as np
 
 bins = [A, A_minus, B_plus, B, B_minus, passing]
 raw_data = [[component1, percentage1, grade1],
@@ -35,15 +37,16 @@ def calculator(final, grade_needed, summary):
 
 def display(summary, bins):
     final = int(final_entry.get())
-    print("Final Exam Calculator for ", course_entry.get())
+    course_name, content = "Final Exam Calculator for " + course_entry.get(), ""
     for bin in bins:
         output = calculator(final, bin.user_entry.get(), summary)
         if output > 100:
-            print("For a {0} grade, you need a {1}% on the final. Not possible unless there is extra credit!".format(bin.letter, output))
+            content += "For a {0} grade, you need a {1}% on the final. Not possible unless there is extra credit!".format(bin.letter, round(output, 2)) + "\n" + "\n"
         elif output < 0:
-            print("For a {0} grade, you good. Automatic!".format(bin.letter, output))
+            content += "For a {0} grade, you good. Automatic!".format(bin.letter, round(output, 2)) + "\n" + "\n"
         else:
-            print("For a {0} grade, you need a {1}% on the final.".format(bin.letter, output))
+            content += "For a {0} grade, you need a {1}% on the final.".format(bin.letter, round(output, 2)) + "\n" + "\n"
+    tkinter.messagebox.showinfo(title=course_name, message=content)
 
 def click(event):
     summary = make_table(arrays())
