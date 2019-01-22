@@ -56,7 +56,7 @@ class LetterGrade:
 
 A = LetterGrade("A/A+", 1)
 A_minus = LetterGrade("A-", 2)
-B_plus = LetterGrade("B-", 3)
+B_plus = LetterGrade("B+", 3)
 B = LetterGrade("B", 4)
 B_minus = LetterGrade("B-", 5)
 passing = LetterGrade("passing", 6)
